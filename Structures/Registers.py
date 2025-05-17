@@ -69,7 +69,7 @@ class GenericRegister(Register):
         """
         super().__init__(num_qubits)
         self.state = np.zeros((2 ** num_qubits, 1), dtype=complex)
-        self.state[0][0] = 1  # начальное состояние — только |00...0> с амплитудой 1
+        self.state[0][0] = 1  # начальное состояние - только |00...0> с амплитудой 1
 
     def get_state(self) -> ndarray:
         """

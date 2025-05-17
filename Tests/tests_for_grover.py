@@ -14,7 +14,7 @@ def test_superposition(verbose=True):
         (1/2) * [1, 1, 1, 1]^T
 
     Parameters:
-        verbose (bool): если True — печатает амплитуды каждого базисного состояния.
+        verbose (bool): если True - печатает амплитуды каждого базисного состояния.
     """
     h = Gate_H()
     h2 = h.tensor(h)
@@ -36,7 +36,7 @@ def test_oracle_and(verbose=True):
     в которой только амплитуда состояния |11> (x = 3) инвертирована (равна -1).
 
     Parameters:
-        verbose (bool): если True — выводит матрицу оракула.
+        verbose (bool): если True - выводит матрицу оракула.
     """
     oracle = OracleAND()
     matrix = oracle.get_matrix()
@@ -58,7 +58,7 @@ def test_diffusion_matrix(verbose=True):
         D * psi = psi
 
     Parameters:
-        verbose (bool): если True — выводит амплитуды состояния после отражения.
+        verbose (bool): если True - выводит амплитуды состояния после отражения.
     """
     diffusion = StandardDiffusion(2)
     D = diffusion.get_matrix()
@@ -80,7 +80,7 @@ def test_run_grover(verbose=True):
     дают результат x = 3.
 
     Parameters:
-        verbose (bool): если True — выводит каждый результат измерения.
+        verbose (bool): если True - выводит каждый результат измерения.
     """
     hits = 0
     for i in range(20):
