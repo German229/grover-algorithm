@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 import numpy as np
 from numpy import ndarray
 
-from LinAl_Sem_2_Lab_3.Structures.Qubit import Qubit
+from Structures.Qubit import Qubit
 
 
 class Gate(ABC):
