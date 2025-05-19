@@ -1,6 +1,7 @@
 from Structures.Gate import Gate_H
 import numpy as np
 from Structures.Oracle import OracleAND
+from Structures.Registers import QuantumRegister
 from Structures.Diffusions import StandardDiffusion
 from Algorithms.grover import run_grover
 
@@ -18,8 +19,11 @@ def test_superposition(verbose=True):
     """
     h = Gate_H()
     h2 = h.tensor(h)
-    initial_state = np.array([[1], [0], [0], [0]], dtype=complex)
-    result = h2.gate_matrix @ initial_state
+    # initial_state = np.array([[1], [0], [0], [0]], dtype=complex)
+    # result = h2.gate_matrix @ initial_state
+    reg = QuantumRegister(2)
+    reg.apply_gate(h2.gate_matrix)
+    result = reg.get_state()
     expected = np.ones((4, 1), dtype=complex) / 2
 
     if verbose:

@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from Structures.Gate import Gate_H
 from Structures.Oracle import OracleAND
+from Structures.Registers import QuantumRegister
 from Structures.Diffusions import StandardDiffusion
 
 
@@ -14,24 +15,25 @@ def analyze_probability(max_iterations=5, verbose=True):
     oracle = OracleAND()
     diffuser = StandardDiffusion(num_qubits=2)
 
-    state = np.array([[1], [0], [0], [0]], dtype=complex)
+    reg = QuantumRegister(2)
 
     # Применяем H ⊗ H
     H2 = h_gate.tensor(h_gate)
-    state = H2.gate_matrix @ state
+    reg.apply_gate(H2.gate_matrix)
 
     results = []
     for i in range(max_iterations + 1):
-        prob = np.abs(state[3, 0]) ** 2  # вероятность |11⟩
+        prob = np.abs(reg.get_state()[3, 0]) ** 2  # вероятность |11⟩
         results.append(prob)
         if verbose:
             print(f"Итерация {i}: вероятность |11⟩ = {prob:.4f}")
 
         # Один шаг Гровера: оракул + диффузия
-        state = oracle.get_matrix() @ state
-        state = diffuser.get_matrix() @ state
+        reg.apply_gate(oracle.get_matrix())
+        reg.apply_gate(diffuser.get_matrix())
 
     return results
+
 
 
 def plot_probability(max_iterations=5):
