@@ -83,11 +83,12 @@ def test_run_grover(verbose=True):
         verbose (bool): если True - выводит каждый результат измерения.
     """
     hits = 0
-    for i in range(20):
+    attempts = 20
+    for i in range(attempts):
         result = run_grover(OracleAND())
         if verbose:
             print(f"Измерение {i + 1}: результат = {result}")
         if result == 3:
             hits += 1
 
-    assert hits >= 8, f"Ошибка: недостаточно попаданий в |11>. Успехов: {hits}/10"
+    assert hits >= attempts * 0.8, f"Ошибка: недостаточно попаданий в |11>. Успехов: {hits}/attempts"
